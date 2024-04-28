@@ -1,0 +1,3 @@
+user=root
+password=04240223mike
+dburl=jdbc:mysql://:3306/hardware_security
