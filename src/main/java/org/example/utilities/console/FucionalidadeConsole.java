@@ -1,16 +1,9 @@
-package org.example;
+package org.example.utilities.console;
 
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.User32;
-import com.sun.jna.platform.win32.WinDef;
-import com.sun.jna.platform.win32.WinUser;
-import com.sun.jna.ptr.IntByReference;
 
+import org.example.utilities.Utilitarios;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FucionalidadeConsole {
 
@@ -30,7 +23,7 @@ public class FucionalidadeConsole {
                             assegurar conformidade com as políticas da empresa.
                             Todas as atividades serão verificadas e, se necessário, medidas serão
                             tomadas automaticamente pelo sistema.
-                                                            
+                                                           
                             """);
                     if (isProcessRunning("whatsApp.exe")) {
                         Thread.sleep(3000);
@@ -62,7 +55,6 @@ public class FucionalidadeConsole {
                                 String pid = parts[0];
                                 Process killProcess = Runtime.getRuntime().exec("kill -9 " + pid);
                                 killProcess.waitFor();
-                                // Adicione aqui a lógica para notificar que o processo foi encerrado
                             }
                         }
                     } catch (IOException | InterruptedException e) {
@@ -76,7 +68,7 @@ public class FucionalidadeConsole {
         }
     }
 
-    static void limparConsole() {
+    public static void limparConsole() {
         try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
@@ -101,17 +93,6 @@ public class FucionalidadeConsole {
         }
         return false;
     }
-
-    //Encerrar processo por PID
-
-//    private static void encerrarJanela(Integer pid) {
-//        try {
-//            Sistema sistema = new Sistema();
-//            sistema.encerraProcesso(pid);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void encerraProcesso(Integer pid) {
         try {
