@@ -11,4 +11,6 @@ public interface DaoRegistro {
 
     void registroEntrada(Usuario usuario, Maquina maquina) throws DatabaseExeption, SQLException;
 
+     void registroReiniciacao(Maquina maquina, Double porcentagemReiniciar);
+
 }

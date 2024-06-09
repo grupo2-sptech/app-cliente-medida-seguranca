@@ -99,10 +99,11 @@ public class Maquina {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Double procentagerReiniciar = daoAlerta.buscarMediaUsoRam(maquina) / registro.converterGB(looca.getMemoria().getTotal()) * 100;
-                if (procentagerReiniciar > 10) {
-                    daoAlerta.inserirAlertaRam(procentagerReiniciar, maquina);
+                Double porcentagemReiniciar = daoAlerta.buscarMediaUsoRam(maquina) / registro.converterGB(looca.getMemoria().getTotal()) * 100;
+                if (porcentagemReiniciar > 10) {
+                    daoAlerta.inserirAlertaRam(porcentagemReiniciar, maquina);
                     System.out.println("A sua máquina será reiniciada em 1 minuto.");
+                    daoRegistro.registroReiniciacao(maquina, porcentagemReiniciar);
                     Reiniciar.agendarReinicio(60000);
                 }
             }

@@ -100,4 +100,18 @@ public class DaoRegistroImple implements org.example.dao.DaoRegistro {
             System.out.println("Erro ao registrar entrada: " + e.getMessage());
         }
     }
+
+    public void registroReiniciacao(Maquina maquina, Double porcentagemReiniciar) {
+        try (Connection conn = ConexaoSQLServer.getConection()) {
+            PreparedStatement st = conn.prepareStatement(
+                    "INSERT INTO historico_reinicializacao (fk_maquina, data_hora_reinicio, numero_componente) VALUES (?, GETDATE(), ?);"
+            );
+
+            st.setInt(1, maquina.getId());
+            st.setDouble(2, porcentagemReiniciar);
+            st.execute();
+        } catch (SQLException e) {
+            System.out.println("Erro ao registrar entrada: " + e.getMessage());
+        }
+    }
 }
